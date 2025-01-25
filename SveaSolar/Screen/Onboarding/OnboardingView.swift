@@ -9,6 +9,9 @@ import SwiftUI
 import TipKit
 
 struct OnboardingView: View {
+
+    private let tip = OnboardingTip()
+
     var body: some View {
         VStack(spacing: 15) {
 
@@ -21,6 +24,8 @@ struct OnboardingView: View {
                             .font(.system(size: 40))
                             .padding([.leading,.bottom], 10)
                 }
+
+            TipView(tip)
 
             Button {
 
@@ -49,6 +54,16 @@ struct OnboardingView: View {
 
         }
         .padding()
+    }
+}
+
+fileprivate struct OnboardingTip: Tip {
+    var title: Text {
+        Text("Been using our old app?")
+    }
+
+    var message: Text? {
+        Text("If you've only used our old app before, you'll need to create a new account")
     }
 }
 
