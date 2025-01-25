@@ -20,7 +20,7 @@ struct AppInfoView: View {
                 Text("This app is for Svea Solar customers. If you have not yet started your journey towards a more sustainable life. you can do it here:")
 
                 Button {
-
+                    //TODO: visit sveasolar.com
                 } label: {
                     Text("Visit our website")
                         .foregroundStyle(.white)
@@ -38,7 +38,7 @@ struct AppInfoView: View {
                 Text("This app is for Svea Solar customers. If you have not yet started your journey towards a more sustainable life. you can do it here:")
 
                 Button {
-
+                    //TODO: show modal view for contact support
                 } label: {
                     Text("Contact supprt")
                         .foregroundStyle(.black)
