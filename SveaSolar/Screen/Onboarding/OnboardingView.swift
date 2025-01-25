@@ -54,6 +54,7 @@ struct OnboardingView: View {
 
         }
         .padding()
+        .safeAreaPadding()
     }
 }
 

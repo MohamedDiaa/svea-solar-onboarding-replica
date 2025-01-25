@@ -53,6 +53,7 @@ struct AppInfoView: View {
             Spacer(minLength: 0)
         }
         .padding()
+        .safeAreaPadding()
 
     }
 }

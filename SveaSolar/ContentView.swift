@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        OnboardingView()
+
+        TabView {
+            OnboardingView()
+            AppInfoView()
+        }
+        .tabViewStyle(.page)
+        .indexViewStyle(.page(backgroundDisplayMode: .always))
+
     }
 }
 
