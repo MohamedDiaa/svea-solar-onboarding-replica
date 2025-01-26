@@ -9,21 +9,40 @@ import SwiftUI
 
 struct HomeView: View {
 
-    @AppStorage("isLoggedIn") var isLoggedIn: Bool = false
+    @Binding var isLoggedIn: Bool
 
     var body: some View {
 
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
 
-        Button {
-            isLoggedIn = false
-        } label: {
-            Text("Logout")
+        VStack {
+            RoundedRectangle(cornerRadius: 20)
+                .fill(LinearGradient(colors: [.indigo,.red], startPoint: .trailing, endPoint: .leading))
+                .overlay(alignment: .bottomLeading) {
+
+                    Text("SVEA\nSOLAR")
+                        .foregroundStyle(.white)
+                        .font(.system(size: 40))
+                        .padding([.leading,.bottom], 10)
+                }
+
+
+            Button {
+                withAnimation(.smooth(duration: 0.5, extraBounce: 0)) {
+                    isLoggedIn = false
+                }
+            } label: {
+                Text("Logout")
+                    .padding()
+                    .foregroundStyle(.white)
+                    .frame(maxWidth: .infinity)
+                    .background(.black, in: Capsule())
+            }
         }
-
+        .padding()
+        .safeAreaPadding()
     }
 }
 
 #Preview {
-    HomeView()
+    HomeView(isLoggedIn: .constant(false))
 }

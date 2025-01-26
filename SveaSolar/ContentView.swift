@@ -25,16 +25,20 @@ struct ContentView: View {
             }
             .preferredColorScheme(.light)
             .tint(.black)
+            .transition(.move(edge: .top))
+
         }
         else {
             NavigationStack {
 
                 TabView {
-                    Tab {
-                        HomeView()
+
+                    Tab("Home", systemImage: "house.fill") {
+                        HomeView(isLoggedIn: $isLoggedIn)
                     }
 
                 }
+                .tint(.black)
             }
             .transition(.move(edge: .bottom))
         }
