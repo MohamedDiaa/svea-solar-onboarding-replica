@@ -47,7 +47,7 @@ struct SigninView: View {
                     .foregroundStyle(.white)
                     .padding()
                     .frame(maxWidth: .infinity)
-                    .background(.gray.opacity(0.5), in: .capsule)
+                    .background(.gray.opacity(0.8), in: .capsule)
             }
 
             Spacer(minLength: 0)

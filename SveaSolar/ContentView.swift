@@ -19,6 +19,7 @@ struct ContentView: View {
             .tabViewStyle(.page)
             .indexViewStyle(.page(backgroundDisplayMode: .always))
         }
+        .tint(.black)
     }
 }
 
