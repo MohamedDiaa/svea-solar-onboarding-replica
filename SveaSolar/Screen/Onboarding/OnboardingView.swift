@@ -13,49 +13,49 @@ struct OnboardingView: View {
     private let tip = OnboardingTip()
 
     var body: some View {
-        VStack(spacing: 15) {
 
-            RoundedRectangle(cornerRadius: 20)
-                .fill(LinearGradient(colors: [.indigo,.red], startPoint: .trailing, endPoint: .leading))
-                .overlay(alignment: .bottomLeading) {
+            VStack(spacing: 15) {
+
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(LinearGradient(colors: [.indigo,.red], startPoint: .trailing, endPoint: .leading))
+                    .overlay(alignment: .bottomLeading) {
 
                         Text("SVEA\nSOLAR")
                             .foregroundStyle(.white)
                             .font(.system(size: 40))
                             .padding([.leading,.bottom], 10)
+                    }
+
+                TipView(tip)
+
+
+
+                NavigationLink(destination: SigninView()) {
+                    Text("Sign in")
+                        .foregroundStyle(.white)
+                        .padding(.vertical,10)
                 }
+                .frame(maxWidth: .infinity)
+                .background(.black, in: Capsule())
 
-            TipView(tip)
 
-            Button {
+                NavigationLink(destination: CreateAccountView()) {
+                    Text("Create account")
+                        .foregroundStyle(.black)
+                        .padding(.vertical,10)
+                }
+                .frame(maxWidth: .infinity)
+                .background(Capsule().stroke(style: .init(lineWidth: 1)))
 
-            } label: {
-                Text("Sign in")
-                    .foregroundStyle(.white)
-                    .padding(.vertical,10)
+                Text("By singning in or creating an account you accept our privacy policy")
+                    .font(.caption2)
+
+
             }
-            .frame(maxWidth: .infinity)
-            .background(.black, in: Capsule())
-
-
-            Button {
-
-            } label: {
-                Text("Create account")
-                    .foregroundStyle(.black)
-                    .padding(.vertical,10)
-            }
-            .frame(maxWidth: .infinity)
-            .background(Capsule().stroke(style: .init(lineWidth: 1)))
-
-            Text("By singning in or creating an account you accept our privacy policy")
-                .font(.caption2)
-
-
+            .padding()
+            .safeAreaPadding()
         }
-        .padding()
-        .safeAreaPadding()
-    }
+    
 }
 
 fileprivate struct OnboardingTip: Tip {

@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SigninView: View {
+
+    @State var email: String = ""
+    @State var password: String = ""
+
     var body: some View {
 
         VStack(alignment: .leading, spacing: 20) {
@@ -16,14 +20,14 @@ struct SigninView: View {
             VStack(alignment: .leading) {
                 Text("Email")
                     .font(.caption)
-                TextField("", text: .constant(""))
+                TextField("", text: $email)
                     .textFieldStyle(.roundedBorder)
             }
 
             VStack(alignment: .leading) {
                 Text("Password")
                     .font(.caption)
-                TextField("", text: .constant(""))
+                SecureField("", text: $password)
                     .textFieldStyle(.roundedBorder)
             }
 
