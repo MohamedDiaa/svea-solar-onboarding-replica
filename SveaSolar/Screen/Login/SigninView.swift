@@ -12,6 +12,7 @@ struct SigninView: View {
     @State var email: String = ""
     @State var password: String = ""
 
+    //@FocusState var focus:
     var body: some View {
 
         VStack(alignment: .leading, spacing: 20) {

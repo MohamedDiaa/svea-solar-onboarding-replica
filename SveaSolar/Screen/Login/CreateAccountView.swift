@@ -18,6 +18,16 @@ struct CreateAccountView: View {
     @State var seePassword: Bool = false
     @State var seeConfirmPassword: Bool = false
 
+    @FocusState var focusState: Focus?
+
+    enum Focus {
+        case email,
+             firstName,
+             lastName,
+             password,
+             confirmPassword
+    }
+
     var body: some View {
 
         ScrollView{
@@ -29,8 +39,14 @@ struct CreateAccountView: View {
                 VStack(alignment: .leading) {
                     Text("Email")
                         .font(.caption)
+
                     TextField("", text: $email)
-                        .textFieldStyle(.roundedBorder)
+                        .textContentType(.emailAddress)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .email ? .black : .gray.opacity(0.3)))
+                        .focused($focusState, equals: Focus.email)
+
+
                 }
 
                 Text("Please enter the email address you used when buying your Svea Solar products.")
@@ -38,15 +54,25 @@ struct CreateAccountView: View {
                 VStack(alignment: .leading) {
                     Text("First name")
                         .font(.caption)
+
+
                     TextField("", text: $firstName)
-                        .textFieldStyle(.roundedBorder)
+                        .textContentType(.name)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .firstName ? .black : .gray.opacity(0.3)))
+                        .focused($focusState, equals: Focus.firstName)
                 }
 
                 VStack(alignment: .leading) {
                     Text("Last name")
                         .font(.caption)
+
+
                     TextField("", text: $lastName)
-                        .textFieldStyle(.roundedBorder)
+                        .textContentType(.name)
+                        .padding()
+                        .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .lastName ? .black : .gray.opacity(0.3)))
+                        .focused($focusState, equals: Focus.lastName)
                 }
 
 
@@ -61,14 +87,18 @@ struct CreateAccountView: View {
                             SecureField("", text: $password)
                         }
                     }
-                    .textFieldStyle(.roundedBorder)
-
+                    .textInputAutocapitalization(.never)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .password ? .black : .gray.opacity(0.3)))
+                    .focused($focusState, equals: Focus.password)
                     .overlay(alignment: .trailing){
 
                         Image(systemName: seePassword ? "eye.fill" : "eye.slash.fill")
                             .onTapGesture {
                                 seePassword.toggle()
                             }
+                            .offset(x: -10)
+
                     }
                 }
 
@@ -86,13 +116,17 @@ struct CreateAccountView: View {
                             SecureField("", text: $confirmPassword)
                         }
                     }
-                    .textFieldStyle(.roundedBorder)
+                    .textInputAutocapitalization(.never)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .confirmPassword ? .black : .gray.opacity(0.3)))
+                    .focused($focusState, equals: Focus.confirmPassword)
                     .overlay(alignment: .trailing){
 
                         Image(systemName: seeConfirmPassword ? "eye.fill" : "eye.slash.fill")
                             .onTapGesture {
                                 seeConfirmPassword.toggle()
                             }
+                            .offset(x: -10)
 
                     }
                 }
