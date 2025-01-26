@@ -31,7 +31,7 @@ struct OnboardingView: View {
 
 
 
-                NavigationLink(destination: SigninView()) {
+                NavigationLink(destination: SigninView(isLoggedIn: $isLoggedIn)) {
                     Text("Sign in")
                         .foregroundStyle(.white)
                         .padding(.vertical,10)

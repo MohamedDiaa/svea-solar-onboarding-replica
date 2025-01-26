@@ -13,7 +13,8 @@ struct SigninView: View {
     @State private var password: String = ""
     @State private var seePassword: Bool = false
 
-    @FocusState var focusState: Focus?
+    @FocusState private var focusState: Focus?
+    @Binding var isLoggedIn: Bool
 
     enum Focus {
         case email, password
@@ -69,6 +70,10 @@ struct SigninView: View {
 
             Button {
 
+                withAnimation(.smooth(duration: 0.5, extraBounce: 0.0)) {
+                    isLoggedIn = true
+
+                }
             } label: {
                 Text("Sign in")
                     .font(.title3)
@@ -86,5 +91,5 @@ struct SigninView: View {
 }
 
 #Preview {
-    SigninView()
+    SigninView(isLoggedIn: .constant(false))
 }
