@@ -11,8 +11,14 @@ struct SigninView: View {
 
     @State var email: String = ""
     @State var password: String = ""
+    @State var seePassword: Bool = false
 
-    //@FocusState var focus:
+    @FocusState var focusState: Focus?
+
+    enum Focus {
+        case email, password
+    }
+
     var body: some View {
 
         VStack(alignment: .leading, spacing: 20) {
@@ -22,14 +28,36 @@ struct SigninView: View {
                 Text("Email")
                     .font(.caption)
                 TextField("", text: $email)
-                    .textFieldStyle(.roundedBorder)
+                    .padding()
+                    .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .email ? .black : .gray.opacity(0.3)))
+                    .focused($focusState, equals: Focus.email)
+
             }
 
             VStack(alignment: .leading) {
                 Text("Password")
                     .font(.caption)
-                SecureField("", text: $password)
-                    .textFieldStyle(.roundedBorder)
+
+                Group {
+                    if seePassword {
+                        TextField("", text: $password)
+                    }
+                    else {
+                        SecureField("", text: $password)
+                    }
+                }
+                .textInputAutocapitalization(.never)
+                .padding()
+                .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .password ? .black : .gray.opacity(0.3)))
+                .focused($focusState, equals: Focus.password)
+                .overlay(alignment: .trailing){
+
+                    Image(systemName: seePassword ? "eye.fill" : "eye.slash.fill")
+                        .onTapGesture {
+                            seePassword.toggle()
+                        }
+                        .offset(x: -10)
+                }
             }
 
             Button {

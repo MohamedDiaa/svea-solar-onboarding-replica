@@ -140,6 +140,7 @@ struct CreateAccountView: View {
             }
             .autocorrectionDisabled(true)
             .padding()
+            .safeAreaPadding()
         }
     }
 }
