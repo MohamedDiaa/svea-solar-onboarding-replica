@@ -11,6 +11,7 @@ import TipKit
 struct OnboardingView: View {
 
     private let tip = OnboardingTip()
+    @Binding var isLoggedIn: Bool
 
     var body: some View {
 
@@ -39,7 +40,7 @@ struct OnboardingView: View {
                 .background(.black, in: Capsule())
 
 
-                NavigationLink(destination: CreateAccountView()) {
+                NavigationLink(destination: CreateAccountView(isLoggedIn: $isLoggedIn)) {
                     Text("Create account")
                         .foregroundStyle(.black)
                         .padding(.vertical,10)
@@ -69,5 +70,5 @@ fileprivate struct OnboardingTip: Tip {
 }
 
 #Preview {
-    OnboardingView()
+    OnboardingView(isLoggedIn: .constant(false))
 }

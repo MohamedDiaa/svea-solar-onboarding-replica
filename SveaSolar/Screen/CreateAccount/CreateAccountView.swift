@@ -9,16 +9,18 @@ import SwiftUI
 
 struct CreateAccountView: View {
 
-    @State var email: String = ""
-    @State var firstName: String = ""
-    @State var lastName: String = ""
-    @State var password: String = ""
-    @State var confirmPassword: String = ""
+    @State private var email: String = ""
+    @State private var firstName: String = ""
+    @State private var lastName: String = ""
+    @State private var password: String = ""
+    @State private var confirmPassword: String = ""
 
-    @State var seePassword: Bool = false
-    @State var seeConfirmPassword: Bool = false
+    @State private var seePassword: Bool = false
+    @State private var seeConfirmPassword: Bool = false
 
-    @FocusState var focusState: Focus?
+    @FocusState private var focusState: Focus?
+
+    @Binding var isLoggedIn: Bool
 
     enum Focus {
         case email,
@@ -136,6 +138,12 @@ struct CreateAccountView: View {
                     .padding(.vertical,10)
                     .frame(maxWidth: .infinity)
                     .background(Capsule().fill(.gray.opacity(0.8)))
+                    .onTapGesture {
+                        withAnimation(.smooth(duration: 0.5, extraBounce: 0.0)) {
+                            isLoggedIn = true
+
+                        }
+                    }
 
             }
             .autocorrectionDisabled(true)
@@ -145,6 +153,6 @@ struct CreateAccountView: View {
     }
 }
 
-#Preview {
-    CreateAccountView()
-}
+//#Preview {
+//    CreateAccountView()
+//}

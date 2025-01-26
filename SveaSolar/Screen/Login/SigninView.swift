@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SigninView: View {
 
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var seePassword: Bool = false
+    @State private var email: String = ""
+    @State private var password: String = ""
+    @State private var seePassword: Bool = false
 
     @FocusState var focusState: Focus?
 
@@ -31,7 +31,6 @@ struct SigninView: View {
                     .padding()
                     .background(RoundedRectangle(cornerRadius: 10).stroke(focusState == .email ? .black : .gray.opacity(0.3)))
                     .focused($focusState, equals: Focus.email)
-
             }
 
             VStack(alignment: .leading) {

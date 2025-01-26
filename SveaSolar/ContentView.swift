@@ -8,19 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+
+    @State var isLoggedIn: Bool = false
+
     var body: some View {
 
-        NavigationStack {
+        if !isLoggedIn {
+            NavigationStack {
 
-            TabView {
-                OnboardingView()
-                AppInfoView()
+                TabView {
+                    OnboardingView(isLoggedIn: $isLoggedIn)
+                    AppInfoView()
+                }
+                .tabViewStyle(.page)
+                .indexViewStyle(.page(backgroundDisplayMode: .always))
             }
-            .tabViewStyle(.page)
-            .indexViewStyle(.page(backgroundDisplayMode: .always))
+            .preferredColorScheme(.light)
+            .tint(.black)
         }
-        .preferredColorScheme(.light)
-        .tint(.black)
+        else {
+            NavigationStack {
+
+                TabView {
+                    Tab {
+                        HomeView()
+                    }
+
+                }
+            }
+            .transition(.move(edge: .bottom))
+        }
     }
 }
 
