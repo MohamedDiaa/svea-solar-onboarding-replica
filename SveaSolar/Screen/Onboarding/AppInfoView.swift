@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AppInfoView: View {
-    var body: some View {
 
+    @State var visitSvea: Bool = false
+
+    var body: some View {
 
         VStack(alignment: .leading) {
 
@@ -20,7 +22,8 @@ struct AppInfoView: View {
                 Text("This app is for Svea Solar customers. If you have not yet started your journey towards a more sustainable life. you can do it here:")
 
                 Button {
-                    //TODO: visit sveasolar.com
+
+                    visitSvea = true
                 } label: {
                     Text("Visit our website")
                         .foregroundStyle(.white)
@@ -54,7 +57,11 @@ struct AppInfoView: View {
         }
         .padding()
         .safeAreaPadding()
+        .sheet(isPresented: $visitSvea, content: {
+            WebView(url:  URL(string: "https://sveasolar.com/en")!,
+                    showWebView: $visitSvea)
 
+        })
     }
 }
 
